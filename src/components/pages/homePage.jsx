@@ -1,11 +1,28 @@
+import { Route, Routes } from 'react-router-dom';
+import Header from '../components/header';
+import LoginPage from './loginPage';
+import ProductOverview from './home/productOverview';
+import ProductPage from './home/product';
+import Cart from './home/cart';
+import ShippingPage from './home/shipping';
+import MyOrdersPage from './home/orders';
 export default function HomePage() {
-    return (
-        <div className="home-container">
-            <h1>Welcome to the Home Page</h1>
-            <p>This is a simple home page component. You can add more content here!</p>
-            <button>Explore</button>
+  return (
+    <div className="h-screen w-full">
+      <Header />
+      <div className='w-full h-[calc(100vh-100px)] '>
+        <Routes path="/*">
+          <Route path="/" element={<h1>Home Page</h1>} />
+          <Route path="/products" element={<ProductPage/>} />
+          <Route path="/login" element={<LoginPage/>} />
 
-            <Link to="/login">Login</Link>
-        </div>
-    );
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/shipping" element={<ShippingPage/>}/>   
+          <Route path='/orders' element={<MyOrdersPage/>}/>      
+          <Route path="/productInfo/:id" element={<ProductOverview/>} />
+        </Routes>  
+      </div>
+        
+    </div>
+  ); 
 }
